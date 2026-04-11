@@ -1,0 +1,14 @@
+{
+  "name": "@arc2898/portscan",
+  "version": "1.0.0",
+  "description": "Which process is using port X? Show PIDs, paths, stale ports.",
+  "main": "dist/cli.js",
+  "bin": { "portscan": "./dist/cli.js" },
+  "scripts": { "build": "tsc", "test": "vitest run" },
+  "keywords": ["port", "scan", "network", "process", "cli"],
+  "license": "MIT",
+  "author": "ARC <rc002898@gmail.com>",
+  "repository": { "type": "git", "url": "https://github.com/arc2898/portscan" },
+  "dependencies": { "commander": "^12.0.0", "chalk": "^5.4.1" },
+  "devDependencies": { "@types/node": "^22.0.0", "typescript": "^5.7.0", "vitest": "^3.0.0" }
+}
