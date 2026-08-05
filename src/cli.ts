@@ -12,7 +12,8 @@ program
 program
   .argument('[port]')
   .description('Port number to scan')
-  .option('-a, --all', 'Scan all active ports')
+  .option("-a, --all", "Scan all active ports")
+  .option("-s, --state <state>", "Filter by connection state (e.g., LISTENING, ESTABLISHED)")
   .action(scan);
 
 program.parse();

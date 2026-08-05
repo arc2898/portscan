@@ -5,6 +5,7 @@ interface ScanOptions {
   port?: string;
   all?: boolean;
   kill?: boolean;
+  state?: string;
 }
 
 export function scan(port: string, options: ScanOptions) {
@@ -71,7 +72,12 @@ function scanAll() {
       { encoding: 'utf-8', maxBuffer: 1024 * 1024 }
     );
 
-    const lines = netstat.split('\n').filter(l => l.trim() && !l.includes('0.0.0.0:0') && !l.includes('[::]'));
+    let lines = netstat.split("\n").filter(l => l.trim() && !l.includes("0.0.0.0:0") && !l.includes("[::]"));
+
+    if (options.state) {
+      const filterState = options.state.toUpperCase();
+      lines = lines.filter(line => line.toUpperCase().includes(filterState));
+    }
     console.log(chalk.cyan('Active ports:\n'));
 
     const ports: Map<string, { addr: string; pid: string; state: string }> = new Map();
