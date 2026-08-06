@@ -10,12 +10,12 @@ interface ScanOptions {
 
 export function scan(port: string, options: ScanOptions) {
   if (!port && !options.all) {
-    console.log('Usage: portscan <port> [--all] [--kill]');
+    console.log('Usage: portscan <port> [--all] [--kill] [--state <state>]');
     return;
   }
 
   if (options.all) {
-    scanAll();
+    scanAll(options);
     return;
   }
 
@@ -65,7 +65,7 @@ function scanPort(port: string) {
   }
 }
 
-function scanAll() {
+function scanAll(options: ScanOptions = {}) {
   try {
     const netstat = execSync(
       process.platform === 'win32' ? 'netstat -ano' : 'netstat -tlnp 2>/dev/null',
