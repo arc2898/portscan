@@ -67,3 +67,7 @@ This project is licensed under the **MIT License**.
 
 ---
 *Maintained by [@arc2898](https://github.com/arc2898)*
+
+## Development
+
+Run `npm ci`, `npm run build`, and `npm test` before publishing changes. The test suite covers scanner behavior without requiring privileged ports.
