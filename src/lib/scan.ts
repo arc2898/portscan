@@ -9,6 +9,11 @@ interface ScanOptions {
 }
 
 export function scan(port: string, options: ScanOptions) {
+  if (port && (!/^\\d{1,5}$/.test(port) || Number(port) < 1 || Number(port) > 65535)) {
+    console.error('Port must be a number between 1 and 65535.');
+    return;
+  }
+
   if (!port && !options.all) {
     console.log('Usage: portscan <port> [--all] [--kill] [--state <state>]');
     return;
