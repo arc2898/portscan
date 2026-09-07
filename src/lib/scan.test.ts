@@ -14,4 +14,13 @@ describe('portscan', () => {
     expect(error).toHaveBeenCalledWith('Port must be a number between 1 and 65535.');
     error.mockRestore();
   });
+
+  it('prints usage guidance when no port or all-port flag is supplied', () => {
+    const output = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+    scan('', {});
+
+    expect(output).toHaveBeenCalledWith('Usage: portscan <port> [--all] [--kill] [--state <state>]');
+    output.mockRestore();
+  });
 });
