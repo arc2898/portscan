@@ -8,8 +8,12 @@ interface ScanOptions {
   state?: string;
 }
 
+export function isValidPort(port: string): boolean {
+  return /^\d{1,5}$/.test(port) && Number(port) >= 1 && Number(port) <= 65535;
+}
+
 export function scan(port: string, options: ScanOptions) {
-  if (port && (!/^\\d{1,5}$/.test(port) || Number(port) < 1 || Number(port) > 65535)) {
+  if (port && !isValidPort(port)) {
     console.error('Port must be a number between 1 and 65535.');
     return;
   }

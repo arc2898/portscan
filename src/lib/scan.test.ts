@@ -1,9 +1,21 @@
 import { describe, expect, it, vi } from 'vitest';
-import { scan } from './scan';
+import { isValidPort, scan } from './scan';
 
 describe('portscan', () => {
   it('exports the scan function', () => {
     expect(typeof scan).toBe('function');
+  });
+
+  it('accepts valid numeric ports', () => {
+    expect(isValidPort('1')).toBe(true);
+    expect(isValidPort('8080')).toBe(true);
+    expect(isValidPort('65535')).toBe(true);
+  });
+
+  it('rejects malformed and out-of-range ports', () => {
+    expect(isValidPort('0')).toBe(false);
+    expect(isValidPort('65536')).toBe(false);
+    expect(isValidPort('http')).toBe(false);
   });
 
   it('rejects invalid port numbers without invoking a system scan', () => {
